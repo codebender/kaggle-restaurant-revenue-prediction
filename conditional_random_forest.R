@@ -15,13 +15,15 @@ train$City.Group <- NULL
 test$City <- NULL
 test$Open.Date <- NULL
 test$City.Group <- NULL
+train$Type <- NULL
+test$Type <- NULL
 
-train$Type = as.factor(train$Type)
-test$Type = as.factor(test$Type)
+#train$Type = as.factor(train$Type)
+#test$Type = as.factor(test$Type)
 
 rf = cforest(revenue ~., data = train[,-1], controls=cforest_unbiased(ntree=2000, mtry=3))
 
-Prediction <- predict(rf, test[,-1], OOB=TRUE, type = "response")
+Prediction = predict(rf, test[,-1], OOB=TRUE, type = "response")
 
 id<-test[,1]
 submission<-cbind(id,Prediction)
