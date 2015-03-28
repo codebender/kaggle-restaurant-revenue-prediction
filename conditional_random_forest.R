@@ -28,4 +28,4 @@ id<-test[,1]
 submission<-cbind(id,Prediction)
 colnames(submission)[2] <- "Prediction"
 
-write.csv(submission, "Output/conditional_forest_mb_set_to_na_ntree_2000.csv", row.names = FALSE, quote = FALSE)
+write.csv(submission, "Output/conditional_forest_mb_set_to_na_ntree_4000.csv", row.names = FALSE, quote = FALSE)
