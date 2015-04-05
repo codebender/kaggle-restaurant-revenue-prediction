@@ -11,6 +11,10 @@ train$days_open <- as.numeric(difftime(competition_start,
   strptime(train$Open.Date, format='%m/%d/%Y'), units='days'))
 test$days_open <- as.numeric(difftime(competition_start,
   strptime(test$Open.Date, format='%m/%d/%Y'), units='days'))
+train$weeks_open <- as.numeric(difftime(competition_start,
+  strptime(train$Open.Date, format='%m/%d/%Y'), units='weeks'))
+test$weeks_open <- as.numeric(difftime(competition_start,
+  strptime(test$Open.Date, format='%m/%d/%Y'), units='weeks'))
 
 # remove unneeded columns
 train$City <- NULL
@@ -30,4 +34,4 @@ id<-test[,1]
 submission<-cbind(id,Prediction)
 colnames(submission)[2] <- "Prediction"
 
-write.csv(submission, "Output/conditional_forest_days_open_log_no_city_group_or_type_ntree_2000.csv", row.names = FALSE, quote = FALSE)
+write.csv(submission, "Output/conditional_forest_days_weeks_open_log_no_city_group_or_type_ntree_2000.csv", row.names = FALSE, quote = FALSE)
