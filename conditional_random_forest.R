@@ -33,6 +33,9 @@ test$City <- NULL
 test$City.Group <- NULL
 test$Open.Date <- NULL
 
+# remove outliers
+train <- train[train$revenue < 16000000,]
+
 rf = cforest(revenue ~., data = train[,-1], controls=cforest_unbiased(ntree=2000))
 
 Prediction = predict(rf, test[,-1], OOB=TRUE, type = "response")
