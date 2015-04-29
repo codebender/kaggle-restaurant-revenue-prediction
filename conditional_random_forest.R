@@ -36,7 +36,7 @@ test$Open.Date <- NULL
 # remove outliers
 train <- train[train$revenue < 16000000,]
 
-rf = cforest(revenue ~., data = train[,-1], controls=cforest_unbiased(ntree=2000))
+rf = cforest(revenue ~., data = train[,-1], controls=cforest_unbiased(ntree=1000))
 
 Prediction = predict(rf, test[,-1], OOB=TRUE, type = "response")
 
@@ -44,4 +44,4 @@ id<-test[,1]
 submission<-cbind(id,Prediction)
 colnames(submission)[2] <- "Prediction"
 
-write.csv(submission, "Output/conditional_forest.csv", row.names = FALSE, quote = FALSE)
+write.csv(submission, "Output/conditional_forest_tree_1000.csv", row.names = FALSE, quote = FALSE)
